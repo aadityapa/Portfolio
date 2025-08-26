@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="gearTitle gearDesc">
+  <title id="gearTitle">Gear Icon</title>
+  <desc id="gearDesc">Gear icon solid white with blue outline</desc>
+  <g stroke="#3B82F6" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Gear body (outer) -->
+    <path d="M19.4 12.94a7.02 7.02 0 000-1.88l1.73-1.35a0.6 0.6 0 00.14-0.78l-1.64-2.84a0.6 0.6 0 00-0.74-0.26l-2.04.82a7.14 7.14 0 00-1.6-.93l-0.31-2.18A0.6 0.6 0 0013.6 2h-3.2a0.6 0.6 0 00-0.6.51l-0.31 2.18c-.56.23-1.08.53-1.6.93l-2.04-.82a0.6 0.6 0 00-0.74.26L2.73 8.93a0.6 0.6 0 00.14.78L4.6 11.06a7.02 7.02 0 000 1.88L2.87 14.3a0.6 0.6 0 00-0.14.78l1.64 2.84c.17.3.52.44.85.34l2.04-.82c.51.4 1.04.7 1.6.93l0.31 2.18c.06.34.35.6.69.6h3.2c.34 0 .63-.26.69-.6l0.31-2.18c.56-.23 1.09-.53 1.6-.93l2.04.82c.33.13.68-.04.85-.34l1.64-2.84a0.6 0.6 0 00-0.14-.78l-1.73-1.35z" />
+    <!-- Center circle -->
+    <circle cx="12" cy="12" r="3" fill="#ffffff" stroke="#3B82F6" stroke-width="1.25"/>
+  </g>
+</svg>

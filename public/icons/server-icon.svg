@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="serverTitle serverDesc">
+  <title id="serverTitle">Server Icon</title>
+  <desc id="serverDesc">Stacked server racks with blue outline</desc>
+  <g stroke="#3B82F6" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Top rack -->
+    <rect x="2.25" y="3" width="19.5" height="4.5" rx="1" />
+    <circle cx="18" cy="5.25" r="0.9" fill="#3B82F6"/>
+    <rect x="4.25" y="4.25" width="6" height="1" rx="0.5" fill="#ffffff" />
+    <!-- Middle rack -->
+    <rect x="2.25" y="9" width="19.5" height="4.5" rx="1" />
+    <circle cx="18" cy="11.25" r="0.9" fill="#3B82F6"/>
+    <rect x="4.25" y="10.25" width="6" height="1" rx="0.5" fill="#ffffff" />
+    <!-- Bottom rack -->
+    <rect x="2.25" y="15" width="19.5" height="4.5" rx="1" />
+    <circle cx="18" cy="17.25" r="0.9" fill="#3B82F6"/>
+    <rect x="4.25" y="16.25" width="6" height="1" rx="0.5" fill="#ffffff" />
+  </g>
+</svg>

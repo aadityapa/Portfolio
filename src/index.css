@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-gray-900;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  @apply font-serif;
+}
+
+/* Paragraphs */
+p {
+  @apply leading-relaxed;
+}
+
+/* Skills Section Cards */
+.skill-card {
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+  border-color: rgba(59, 130, 246, 1);
+}
+
+/* Skill Icon Holder */
+.skill-icon {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+}
+
+/* Animate on scroll fade-up */
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition-property: transform, opacity;
+}
+
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Experience Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid rgba(59, 130, 246, 0.6);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.timeline-dot {
+  @apply w-12 h-12 rounded-full flex items-center justify-center font-bold text-white bg-blue-600;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.5);
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+.timeline-content {
+  margin-left: 3.5rem;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 1), 0 0 40px rgba(59, 130, 246, 0.8);
+  }
+}
