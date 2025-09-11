@@ -201,7 +201,7 @@ export default function App() {
               <p className="text-lg text-blue-300 font-semibold">January 2025 - Present</p>
               <h4 className="text-2xl font-bold">Information Technology Engineer</h4>
               <p className="mt-2 text-gray-200">
-                Godrej Properties Limited, Pune, Maharashtra, India (7 months)
+                Godrej Properties Limited, Pune, Maharashtra, India (9 months)
               </p>
             </div>
           </div>
