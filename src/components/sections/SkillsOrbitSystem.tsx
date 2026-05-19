@@ -166,14 +166,14 @@ export function SkillsOrbitSystem() {
             ))}
           </svg>
 
-          <div className="pointer-events-none absolute inset-0">
+          <div className={cn("pointer-events-none absolute inset-0", isTablet && "opacity-55")}>
             {orbitalHighlights.map((item, i) => (
               <motion.span
                 key={item.name}
                 className="absolute rounded-full border border-white/10 px-2.5 py-1 text-[10px] text-slate-200"
                 style={{
-                  left: `${8 + (i % 4) * 22}%`,
-                  top: `${10 + Math.floor(i / 4) * 58}%`,
+                  left: `${10 + (i % 4) * (isTablet ? 20 : 22)}%`,
+                  top: `${12 + Math.floor(i / 4) * (isTablet ? 56 : 58)}%`,
                   boxShadow: `0 0 12px ${item.glow}`,
                 }}
                 animate={reduced ? undefined : { opacity: [0.3, 0.85, 0.3], y: [0, -5, 0] }}

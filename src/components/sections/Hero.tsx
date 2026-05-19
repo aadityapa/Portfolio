@@ -63,7 +63,7 @@ export function Hero() {
   const ambientDots = isSmallLaptop ? 8 : 12;
 
   return (
-    <section ref={sectionRef} id="hero" className="relative flex min-h-[95vh] items-center overflow-hidden">
+    <section ref={sectionRef} id="hero" className="section-cinematic relative flex min-h-[95vh] items-center overflow-hidden">
       <HeroCanvas />
       <div className="grid-floor pointer-events-none absolute inset-0 opacity-35" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(3,7,18,0.2)_0%,rgba(3,7,18,0.72)_95%)]" />

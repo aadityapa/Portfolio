@@ -61,7 +61,7 @@ export function Contact({ showHeading = true }: { showHeading?: boolean }) {
   ];
 
   return (
-    <section id="contact" className="section-pad relative overflow-hidden bg-surface">
+    <section id="contact" className="section-cinematic section-pad relative overflow-hidden bg-surface">
       <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-accent/10 blur-[100px]" />
       <div className="container-page relative">
         {showHeading && (
@@ -92,7 +92,7 @@ export function Contact({ showHeading = true }: { showHeading?: boolean }) {
 
             <ContactVisual />
 
-            <motion.div className="card-pro space-y-4 !p-6" variants={item}>
+            <motion.div className="card-pro card-interactive space-y-4 p-6!" variants={item}>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neon">Quick connect</p>
               <p className="prose-body text-sm md:text-base">
                 <span className="text-white">{siteConfig.name}</span>
@@ -107,6 +107,23 @@ export function Contact({ showHeading = true }: { showHeading?: boolean }) {
                   {siteConfig.email}
                 </a>
               </p>
+            </motion.div>
+
+            <motion.div className="grid grid-cols-2 gap-2" variants={item}>
+              {[
+                { label: "Cloud Sync", state: "Online" },
+                { label: "AI Routes", state: "Stable" },
+                { label: "Security", state: "Layered" },
+                { label: "Automation", state: "Active" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-white/10 bg-white/3 px-3 py-2.5 text-xs"
+                >
+                  <p className="text-slate-400">{stat.label}</p>
+                  <p className="mt-0.5 font-semibold text-neon">{stat.state}</p>
+                </div>
+              ))}
             </motion.div>
 
             <motion.ul className="flex flex-wrap gap-3" variants={item}>
@@ -129,7 +146,7 @@ export function Contact({ showHeading = true }: { showHeading?: boolean }) {
           <motion.form
             variants={item}
             onSubmit={onSubmit}
-            className="card-pro neon-border flex flex-col"
+            className="card-pro card-interactive neon-border flex flex-col"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neon">Transmission</p>
             <h3 className="mt-2 font-display text-2xl font-bold tracking-tight text-white md:text-3xl">

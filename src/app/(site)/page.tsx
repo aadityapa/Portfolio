@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <section className="section-pad relative border-t border-white/10 bg-void/80">
+      <section className="section-cinematic section-pad relative border-t border-white/10 bg-void/80">
         <div className="container-page">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>

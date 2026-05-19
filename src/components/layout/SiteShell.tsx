@@ -14,7 +14,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <AmbientBackground />
       <SiteNav />
-      <main className="relative z-10">{children}</main>
+      <main className="relative z-10">
+        <div className="pointer-events-none fixed inset-x-0 top-0 z-0 h-24 bg-linear-to-b from-void via-void/50 to-transparent" />
+        {children}
+      </main>
       <Footer />
     </>
   );

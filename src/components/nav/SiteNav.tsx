@@ -28,13 +28,14 @@ export function SiteNav() {
   return (
     <motion.header
       className={cn(
-        "fixed top-4 left-1/2 z-[100] w-[min(96vw,1200px)] -translate-x-1/2 rounded-2xl border border-white/10 glass-panel px-3 py-2.5 transition-transform duration-500 md:px-5",
-        hidden && "-translate-y-[140%]"
+        "fixed top-4 left-1/2 z-100 w-[min(96vw,1200px)] -translate-x-1/2 rounded-2xl border border-white/10 glass-panel px-3 py-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-transform duration-500 md:px-5",
+        hidden && "translate-y-[-140%]"
       )}
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.2, duration: 0.7 }}
     >
+      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-neon/50 to-transparent" />
       <div className="flex items-center justify-between gap-3">
         <Link href="/" className="font-display text-lg font-bold text-white" data-cursor="pointer">
           AP<span className="text-neon">.</span>
@@ -46,12 +47,13 @@ export function SiteNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                "relative rounded-lg px-2.5 py-1.5 text-xs font-medium transition md:px-3 md:text-sm",
+                "group relative rounded-lg px-2.5 py-1.5 text-xs font-medium transition md:px-3 md:text-sm",
                 isActive(item.href) ? "text-neon" : "text-slate-300 hover:text-white"
               )}
               data-cursor="pointer"
             >
               {item.label}
+              <span className="absolute right-2 top-1.5 h-1 w-1 rounded-full bg-neon/40 opacity-0 transition group-hover:opacity-100" />
               {isActive(item.href) && (
                 <motion.span
                   layoutId="site-nav-pill"
