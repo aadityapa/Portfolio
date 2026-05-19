@@ -1,19 +1,4 @@
-export const siteConfig = {
-  name: "Aaditya Padiya",
-  title: "Aaditya Padiya | Intelligent Digital Experiences",
-  description:
-    "Building intelligent digital experiences — AI, web, automation, and immersive 3D.",
-  email: "aadityapadiya@gmail.com",
-  phone: "9423477787",
-  resume: "/Aaditya-Padiya-Innovating-the-Digital-Frontier.pdf",
-  photo: "/images/aaditya-photo.png",
-  links: {
-    linkedin:
-      "https://www.linkedin.com/in/aaditya-padiya?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-    github: "https://github.com/aadityapadiya",
-    whatsapp: "https://wa.me/919423477787",
-  },
-};
+export { siteConfig } from "./site-config";
 
 export const navItems = [
   { id: "hero", label: "Home" },
@@ -28,15 +13,17 @@ export const navItems = [
 
 export const heroContent = {
   name: "Aaditya Padiya",
-  headline: "Building Intelligent Digital Experiences",
-  tags: ["AI", "Web", "Automation", "3D Experiences"],
+  headline: "ENGINEERING AI-NATIVE DIGITAL SYSTEMS",
+  tags: ["AI", "Automation", "Infrastructure", "Immersive Web"],
   subtitle:
-    "System Administrator at Karnex · Director at NEXOVO TECH · Crafting premium web, AI automation, and cinematic 3D products.",
+    "Building intelligent systems across AI, cloud infrastructure, automation, and immersive web technologies.",
   typingLines: [
-    "Enterprise IT & cloud operations",
-    "AI-powered workflow automation",
-    "Immersive React & Three.js experiences",
-    "Full-stack SaaS & mobile products",
+    "> AI-powered workflows initialized",
+    "> Neural systems online",
+    "> Cloud infrastructure synchronized",
+    "> Intelligent automation active",
+    "> Immersive systems operational",
+    "> AI agents connected",
   ],
 };
 
@@ -68,52 +55,8 @@ export const aboutBlocks = [
 
 export { orbitSkills } from "./skill-logos";
 
-export const projects = [
-  {
-    id: "infra",
-    title: "Enterprise Infrastructure Optimization",
-    description:
-      "Proactive system administration, capacity planning, and governance for reliability at scale.",
-    stack: ["Windows Server", "Networking", "Monitoring", "ITIL"],
-    image: "/images/projects/infra.jpg",
-    demo: siteConfig.links.linkedin,
-    github: siteConfig.links.linkedin,
-    accent: "#22d3ee",
-  },
-  {
-    id: "security",
-    title: "Security & Compliance Hardening",
-    description:
-      "Policy controls, audit readiness, and preventive monitoring across endpoints and cloud.",
-    stack: ["M365", "Identity", "Compliance", "Security"],
-    image: "/images/projects/security.jpg",
-    demo: siteConfig.links.linkedin,
-    github: siteConfig.links.linkedin,
-    accent: "#818cf8",
-  },
-  {
-    id: "delivery",
-    title: "Service Delivery Excellence",
-    description:
-      "Streamlined incident response, software lifecycle management, and cross-functional coordination.",
-    stack: ["Support", "Automation", "Documentation", "SLA"],
-    image: "/images/projects/delivery.jpg",
-    demo: siteConfig.links.linkedin,
-    github: siteConfig.links.linkedin,
-    accent: "#34d399",
-  },
-  {
-    id: "immersive",
-    title: "Immersive Portfolio Experience",
-    description:
-      "Cinematic 3D web experience with React Three Fiber, shaders, and scroll-driven storytelling.",
-    stack: ["Next.js", "R3F", "GSAP", "Framer Motion"],
-    image: "/images/projects/immersive.jpg",
-    demo: "#hero",
-    github: siteConfig.links.github,
-    accent: "#f472b6",
-  },
-];
+export { projects, getProjectBySlug, getAllProjectSlugs, projectCategories } from "./projects";
+export type { Project, ProjectCategory } from "./projects";
 
 export const services = [
   {

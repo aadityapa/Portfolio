@@ -6,6 +6,7 @@ import * as THREE from "three";
 
 export function Particles({ count = 400 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
+  const velocity = useRef(0);
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -18,7 +19,10 @@ export function Particles({ count = 400 }: { count?: number }) {
 
   useFrame((_, delta) => {
     if (!ref.current) return;
-    ref.current.rotation.y += delta * 0.02;
+    velocity.current = THREE.MathUtils.lerp(velocity.current, 0.14, 0.05);
+    ref.current.rotation.y += delta * 0.024;
+    ref.current.rotation.x = Math.sin(performance.now() * 0.0001) * 0.06;
+    ref.current.position.z = Math.sin(performance.now() * 0.00012) * 0.08;
   });
 
   return (
@@ -27,10 +31,10 @@ export function Particles({ count = 400 }: { count?: number }) {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} count={count} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.035}
+        size={0.03}
         color="#22d3ee"
         transparent
-        opacity={0.75}
+        opacity={0.7}
         sizeAttenuation
         depthWrite={false}
       />

@@ -17,8 +17,18 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.title,
+  title: {
+    default: siteConfig.title,
+    template: "%s | Aaditya Padiya",
+  },
   description: siteConfig.description,
+  metadataBase: new URL("https://aadityapadiya.vercel.app"),
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    type: "website",
+    locale: "en_IN",
+  },
   icons: { icon: "/favicon.ico" },
 };
 

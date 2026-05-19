@@ -32,6 +32,7 @@ export function TypingText({ lines }: { lines: string[] }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          className="inline-flex items-center rounded-md border border-neon/25 bg-neon/5 px-2 py-1 shadow-[0_0_18px_rgba(34,211,238,0.12)]"
         >
           {display}
           <motion.span

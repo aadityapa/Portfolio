@@ -12,7 +12,7 @@ import { WorkspaceScene } from "./WorkspaceScene";
 export function HeroCanvas() {
   const mouse = useMousePosition();
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const particleCount = isMobile ? 80 : 220;
+  const particleCount = isMobile ? 120 : 320;
 
   return (
     <div className="absolute inset-0 -z-10">
@@ -28,7 +28,9 @@ export function HeroCanvas() {
           <WorkspaceScene mouse={mouse} />
         </Suspense>
       </Canvas>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-void/20 via-transparent to-void" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-void/20 via-transparent to-void" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(34,211,238,0.04)_45%,transparent_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-size-[100%_4px] opacity-20 [background:linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px)]" />
     </div>
   );
 }
