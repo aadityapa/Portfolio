@@ -18,8 +18,8 @@ export default function AiPage() {
         title="Agentic intelligence layer"
         description="OCR pipelines, reliability automation, and AI-native control planes."
       />
-      <section className="section-pad pt-0">
-        <div className="mx-auto max-w-7xl grid gap-8 md:grid-cols-2">
+      <section className="section-cinematic section-pad pt-0">
+        <div className="container-page grid gap-8 md:grid-cols-2">
           {aiProjects.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} />
           ))}

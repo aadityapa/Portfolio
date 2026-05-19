@@ -25,7 +25,7 @@ export default function ProjectsPage() {
         title="Cinematic project universe"
         description="Eight builds — from AI OCR and AIOps to enterprise infrastructure and immersive 3D. Every project has a dedicated case study."
       />
-      <section className="section-pad pt-0">
+      <section className="section-cinematic section-pad pt-0">
         <div className="container-page">
           <div className="flex flex-wrap gap-2">
             {projectCategories.map((cat) => (

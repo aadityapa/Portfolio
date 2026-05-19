@@ -16,7 +16,7 @@ export default function LabsPage() {
         title="Experimental playground"
         description="WebGL shaders, motion prototypes, and interaction R&D."
       />
-      <section className="section-pad">
+      <section className="section-cinematic section-pad">
         <div className="relative mx-auto h-[60vh] max-w-7xl overflow-hidden rounded-3xl border border-white/10">
           <HeroCanvas />
           <div className="absolute inset-0 flex items-center justify-center bg-void/40 backdrop-blur-[2px]">

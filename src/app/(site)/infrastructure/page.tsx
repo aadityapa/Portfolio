@@ -13,14 +13,14 @@ export default function InfrastructurePage() {
         title="Enterprise architecture command"
         description="Firewalls, VLANs, DMZ design, and reliability engineering at organizational scale."
       />
-      <section className="section-pad">
+      <section className="section-cinematic section-pad">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-6 lg:grid-cols-2">
             {[network, enterprise].filter(Boolean).map((p) => (
               <Link
                 key={p!.slug}
                 href={`/projects/${p!.slug}`}
-                className="glass-panel group rounded-3xl p-8 transition hover:border-neon/40"
+                className="card-interactive glass-panel group rounded-3xl p-8 transition hover:border-neon/40"
               >
                 <p className="text-xs uppercase tracking-widest text-neon">{p!.category}</p>
                 <h3 className="mt-2 font-display text-2xl font-bold text-white">{p!.title}</h3>
@@ -36,7 +36,7 @@ export default function InfrastructurePage() {
                     {node}
                   </div>
                   {i < 4 && (
-                    <span className="absolute right-0 top-1/2 hidden h-px w-8 translate-x-full bg-gradient-to-r from-neon to-transparent sm:block" />
+                    <span className="absolute right-0 top-1/2 hidden h-px w-8 translate-x-full bg-linear-to-r from-neon to-transparent sm:block" />
                   )}
                 </div>
               ))}

@@ -17,8 +17,10 @@ export function CustomCursor() {
   const y = useMotionValue(-100);
   const trailX = useSpring(x, { stiffness: 280, damping: 28 });
   const trailY = useSpring(y, { stiffness: 280, damping: 28 });
-  const ringX = useSpring(x, { stiffness: 120, damping: 18 });
-  const ringY = useSpring(y, { stiffness: 120, damping: 18 });
+  const ringX = useSpring(x, { stiffness: 140, damping: 20 });
+  const ringY = useSpring(y, { stiffness: 140, damping: 20 });
+  const ghostX = useSpring(x, { stiffness: 90, damping: 20 });
+  const ghostY = useSpring(y, { stiffness: 90, damping: 20 });
 
   useEffect(() => {
     if (isMobile || reduced) return;
@@ -54,11 +56,12 @@ export function CustomCursor() {
   const size =
     mode === "view" ? 72 : mode === "pointer" ? 44 : mode === "text" ? 36 : 12;
   const ringSize = mode === "view" ? 88 : mode === "pointer" ? 56 : 40;
+  const ghostSize = mode === "view" ? 116 : mode === "pointer" ? 74 : 52;
 
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[300] mix-blend-difference"
+        className="pointer-events-none fixed top-0 left-0 z-300 mix-blend-difference"
         style={{ x: trailX, y: trailY, opacity: visible ? 1 : 0 }}
       >
         <motion.div
@@ -68,7 +71,7 @@ export function CustomCursor() {
         />
       </motion.div>
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[299]"
+        className="pointer-events-none fixed top-0 left-0 z-299"
         style={{ x: ringX, y: ringY, opacity: visible ? 0.85 : 0 }}
       >
         <motion.div
@@ -80,6 +83,24 @@ export function CustomCursor() {
           transition={{ type: "spring", stiffness: 200, damping: 22 }}
         />
       </motion.div>
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 z-298"
+        style={{ x: ghostX, y: ghostY, opacity: visible ? 0.28 : 0 }}
+      >
+        <motion.div
+          className="-translate-x-1/2 -translate-y-1/2 rounded-full border border-neon/20"
+          animate={{ width: ghostSize, height: ghostSize }}
+          transition={{ type: "spring", stiffness: 150, damping: 20 }}
+        />
+      </motion.div>
+      {mode === "view" && (
+        <motion.div
+          className="pointer-events-none fixed top-0 left-0 z-301 -translate-x-1/2 translate-y-[-220%] rounded-full border border-neon/60 bg-void/60 px-2 py-0.5 text-[9px] font-semibold tracking-[0.16em] text-neon"
+          style={{ x: trailX, y: trailY, opacity: visible ? 1 : 0 }}
+        >
+          VIEW
+        </motion.div>
+      )}
     </>
   );
 }

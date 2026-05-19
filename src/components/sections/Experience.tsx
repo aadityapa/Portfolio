@@ -33,7 +33,7 @@ export function Experience({ showHeading = true }: { showHeading?: boolean }) {
   }, []);
 
   return (
-    <section id="experience" className="section-pad relative overflow-hidden bg-surface">
+    <section id="experience" className="section-cinematic section-pad relative overflow-hidden bg-surface">
       <div className="pointer-events-none absolute left-1/2 top-1/4 h-64 w-64 -translate-x-1/2 rounded-full bg-neon/5 blur-[100px]" />
       <div className="container-page relative mx-auto max-w-2xl">
         {showHeading && (
@@ -48,7 +48,7 @@ export function Experience({ showHeading = true }: { showHeading?: boolean }) {
         <div className="relative mx-auto max-w-xl pl-12 md:pl-14">
           <motion.div
             ref={lineRef}
-            className="absolute left-[19px] top-2 h-[calc(100%-1rem)] w-0.5 origin-top bg-gradient-to-b from-neon via-accent/80 to-transparent shadow-[0_0_20px_rgba(34,211,238,0.35)] md:left-[21px]"
+            className="absolute left-[19px] top-2 h-[calc(100%-1rem)] w-0.5 origin-top bg-linear-to-b from-neon via-accent/80 to-transparent shadow-[0_0_20px_rgba(34,211,238,0.35)] md:left-[21px]"
           />
 
           {experience.map((item, i) => (
@@ -67,7 +67,7 @@ export function Experience({ showHeading = true }: { showHeading?: boolean }) {
                 {i + 1}
               </motion.span>
               <motion.div
-                className="card-pro !p-6 md:!p-7"
+                className="card-pro p-6! md:p-7!"
                 whileHover={{ y: -4, boxShadow: "0 0 40px rgba(34,211,238,0.08)" }}
                 transition={{ type: "spring", stiffness: 400, damping: 28 }}
               >

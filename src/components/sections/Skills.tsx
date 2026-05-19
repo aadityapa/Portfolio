@@ -9,7 +9,7 @@ export function Skills({ showHeading = true }: { showHeading?: boolean }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <section id="skills" className="section-pad relative overflow-hidden bg-void">
+    <section id="skills" className="section-cinematic section-pad relative overflow-hidden bg-void">
       <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-[480px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
       <div className="container-page relative">
         {showHeading && (

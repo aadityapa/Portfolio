@@ -38,7 +38,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export function About({ showHeading = true }: { showHeading?: boolean }) {
   return (
-    <section id="about" className="section-pad relative overflow-hidden bg-surface">
+    <section id="about" className="section-cinematic section-pad relative overflow-hidden bg-surface">
       <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-neon/10 blur-[120px]" />
       <div className="container-page relative">
         {showHeading && (
@@ -69,7 +69,7 @@ export function About({ showHeading = true }: { showHeading?: boolean }) {
 
         <div className="mt-10 grid items-stretch gap-8 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_1.15fr] lg:gap-10">
           <motion.div
-            className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-3xl border border-neon/25 shadow-[0_0_50px_rgba(34,211,238,0.08)] lg:mx-0"
+            className="relative mx-auto aspect-4/5 w-full max-w-md overflow-hidden rounded-3xl border border-neon/25 shadow-[0_0_50px_rgba(34,211,238,0.08)] lg:mx-0"
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -82,7 +82,7 @@ export function About({ showHeading = true }: { showHeading?: boolean }) {
               rootMargin="200px"
               className="object-cover"
             />
-            <motion.div className="absolute inset-0 bg-gradient-to-t from-void/85 via-void/20 to-transparent" />
+            <motion.div className="absolute inset-0 bg-linear-to-t from-void/85 via-void/20 to-transparent" />
           </motion.div>
 
           <motion.div

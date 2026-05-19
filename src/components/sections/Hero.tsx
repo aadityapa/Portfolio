@@ -96,6 +96,7 @@ export function Hero() {
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}
           className="card-pro neon-border relative rounded-3xl p-7! md:p-9!"
+          data-parallax="0.08"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
@@ -209,6 +210,7 @@ export function Hero() {
         <motion.div
           style={{ y: rightY, opacity: contentOpacity }}
           className="relative"
+          data-parallax="0.11"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -240,6 +242,7 @@ export function Hero() {
               <motion.div
                 key={widget.title}
                 className="absolute z-40 w-[180px] rounded-xl border border-white/10 bg-slate-950/80 p-3 backdrop-blur-md"
+                data-parallax="0.16"
                 style={{
                   left: idx % 2 ? "auto" : "8%",
                   right: idx % 2 ? "8%" : "auto",

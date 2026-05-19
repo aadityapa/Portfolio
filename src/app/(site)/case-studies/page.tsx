@@ -16,13 +16,13 @@ export default function CaseStudiesPage() {
         title="Premium storytelling"
         description="Deep-dive narratives for flagship builds — architecture, metrics, and outcomes."
       />
-      <section className="section-pad pt-0">
-        <div className="mx-auto max-w-7xl space-y-6">
+      <section className="section-cinematic section-pad pt-0">
+        <div className="container-page space-y-6">
           {featured.map((p) => (
             <Link
               key={p.slug}
               href={`/projects/${p.slug}`}
-              className="glass-panel group flex flex-col gap-6 rounded-3xl p-8 transition hover:border-neon/30 md:flex-row md:items-center"
+              className="card-interactive glass-panel group flex flex-col gap-6 rounded-3xl p-8 transition hover:border-neon/30 md:flex-row md:items-center"
             >
               <div className="flex-1">
                 <p className="text-xs uppercase tracking-widest" style={{ color: p.accent }}>
