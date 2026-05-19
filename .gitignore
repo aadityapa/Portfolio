@@ -11,6 +11,14 @@ package-lock.json
 
 # production
 /build
+/.next/
+/out/
+
+# next.js
+next-env.d.ts
+
+# temp scaffold
+/temp-next/
 
 # misc
 .DS_Store

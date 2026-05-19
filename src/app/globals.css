@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #030712;
+  --color-surface: #0a0f1e;
+  --color-glass: rgba(15, 23, 42, 0.55);
+  --color-neon: #22d3ee;
+  --color-neon-dim: rgba(34, 211, 238, 0.35);
+  --color-accent: #818cf8;
+  --color-muted: #94a3b8;
+  --font-display: var(--font-syne);
+  --font-body: var(--font-dm-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--color-void);
+  color: #e2e8f0;
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (max-width: 1024px) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+  color: #fff;
+}
+
+.glass-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.72) 0%,
+    rgba(15, 23, 42, 0.38) 100%
+  );
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.neon-text {
+  text-shadow: 0 0 40px rgba(34, 211, 238, 0.45);
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 211, 238, 0.8),
+    rgba(129, 140, 248, 0.4),
+    transparent 60%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.grid-floor {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black 20%, transparent 85%);
+}
+
+.section-pad {
+  @apply px-5 py-24 md:px-10 md:py-32 lg:px-16;
+}
+
+.font-display {
+  font-family: var(--font-syne), system-ui, sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+[data-cursor="pointer"],
+a,
+button {
+  cursor: none;
+}
+
+@media (max-width: 1024px) {
+  [data-cursor="pointer"],
+  a,
+  button {
+    cursor: pointer;
+  }
+}
+
+.projects-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+}
+
+/* Skills orbit — GPU transform only */
+.orbit-ring {
+  animation: orbit-spin 48s linear infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.orbit-node-inner {
+  animation: orbit-counter 48s linear infinite;
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-counter {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.contact-globe {
+  animation: globe-pulse 6s ease-in-out infinite;
+}
+
+.contact-globe-grid {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.35) 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(circle, black 40%, transparent 72%);
+}
+
+@keyframes globe-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(34, 211, 238, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring,
+  .orbit-node-inner,
+  .contact-globe {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
