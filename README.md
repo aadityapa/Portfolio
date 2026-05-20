@@ -27,6 +27,8 @@ npm start
 3. Framework preset: **Next.js** (auto-detected).
 4. Deploy — no extra env vars required.
 
+**Live site:** [aadityapadiya.vercel.app](https://aadityapadiya.vercel.app)
+
 Or use the CLI:
 
 ```bash
@@ -35,7 +37,7 @@ npx vercel
 
 ## Customize content
 
-Edit `src/lib/data/portfolio.ts` for copy, projects, links, and sections.
+Edit `src/lib/data/site-config.ts`, `projects.ts`, and `skill-groups.ts` for copy, projects, and skills.
 
 ## Performance
 
