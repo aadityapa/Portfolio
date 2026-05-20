@@ -1,10 +1,10 @@
 export const mainNav = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/skills", label: "Skills" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
 
 export const extendedNav = [

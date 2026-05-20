@@ -1,8 +1,17 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Hero } from "@/components/sections/Hero";
+import { About } from "@/components/sections/About";
+import { Experience } from "@/components/sections/Experience";
+import { Contact } from "@/components/sections/Contact";
 import { projects } from "@/lib/data/projects";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+
+const Skills = dynamic(
+  () => import("@/components/sections/Skills").then((m) => m.Skills),
+  { loading: () => <div className="section-pad min-h-[480px] animate-pulse bg-void" /> }
+);
 
 export default function HomePage() {
   const featured = projects.slice(0, 4);
@@ -10,7 +19,15 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <section className="section-cinematic section-pad relative border-t border-white/10 bg-void/80">
+      <About />
+      <Skills />
+      <section
+        id="projects"
+        data-story-section
+        className="section-cinematic section-pad relative border-t border-white/10 bg-void/80"
+      >
+        <div className="section-seam section-seam-top" />
+        <div className="section-seam section-seam-bottom" />
         <div className="container-page">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
@@ -48,6 +65,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <Experience />
+      <Contact />
     </>
   );
 }

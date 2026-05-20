@@ -1,10 +1,9 @@
-/** Official brand logos (Devicon + Simple Icons) — stored in /public/logos */
+/** Official brand logos (Simple Icons) — stored in /public/logos */
 export type OrbitSkill = {
   name: string;
   logo: string;
   color: string;
   glow: string;
-  /** Lighten dark SVG marks on dark UI */
   invert?: boolean;
 };
 

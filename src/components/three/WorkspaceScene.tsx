@@ -103,6 +103,30 @@ function AICore() {
   );
 }
 
+function TelemetryBars() {
+  const ref = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    if (!ref.current) return;
+    ref.current.children.forEach((child, idx) => {
+      const mesh = child as THREE.Mesh;
+      mesh.scale.y = 0.5 + Math.abs(Math.sin(state.clock.elapsedTime * 1.8 + idx * 0.6)) * 1.2;
+      mesh.position.y = -0.35 + mesh.scale.y * 0.17;
+    });
+  });
+
+  return (
+    <group ref={ref} position={[-0.9, -0.3, 0.55]}>
+      {Array.from({ length: 8 }, (_, idx) => (
+        <mesh key={idx} position={[idx * 0.12, 0, 0]}>
+          <boxGeometry args={[0.06, 0.2, 0.06]} />
+          <meshStandardMaterial color={idx % 3 === 0 ? "#818cf8" : "#22d3ee"} emissive="#22d3ee" emissiveIntensity={0.2} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 export function WorkspaceScene({
   mouse,
 }: {
@@ -128,10 +152,16 @@ export function WorkspaceScene({
     <group ref={group} position={[1.55, -0.15, 0]}>
       <AICore />
       <DashboardPanel position={[1.9, 0.02, -0.2]} />
+      <TelemetryBars />
       <Float speed={1.5} floatIntensity={0.28}>
         <RoundedBox args={[0.4, 0.1, 0.3]} radius={0.02} position={[-1.15, 0.08, 0.28]}>
           <meshStandardMaterial color="#64748b" metalness={0.9} roughness={0.15} />
         </RoundedBox>
+      </Float>
+      <Float speed={1.2} floatIntensity={0.22}>
+        <Torus args={[0.9, 0.015, 16, 96]} position={[-0.25, 0.7, -0.4]} rotation={[Math.PI / 2, 0, 0]}>
+          <meshStandardMaterial color="#22d3ee" emissive="#22d3ee" emissiveIntensity={0.25} />
+        </Torus>
       </Float>
       <pointLight position={[2.1, 2.8, 2]} intensity={1.7} color="#22d3ee" />
       <pointLight position={[-1.7, 1.2, -1]} intensity={1.1} color="#818cf8" />

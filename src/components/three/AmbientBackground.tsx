@@ -70,8 +70,44 @@ function NeuralLattice() {
   );
 }
 
+function DataStreams({ count }: { count: number }) {
+  const ref = useRef<THREE.Group>(null);
+  const streams = useMemo(() => {
+    return Array.from({ length: count }, (_, index) => ({
+      id: index,
+      x: -12 + (index % 6) * 4.6,
+      y: -6 + Math.floor(index / 6) * 2.2,
+      z: -4 + (index % 4) * 1.8,
+      scale: 0.6 + (index % 3) * 0.2,
+    }));
+  }, [count]);
+
+  useFrame((state) => {
+    if (!ref.current) return;
+    ref.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.08) * 0.04;
+    ref.current.position.y = Math.sin(state.clock.elapsedTime * 0.15) * 0.22;
+  });
+
+  return (
+    <group ref={ref}>
+      {streams.map((stream) => (
+        <mesh
+          key={stream.id}
+          position={[stream.x, stream.y, stream.z]}
+          rotation={[0, 0, Math.PI * 0.14]}
+          scale={[stream.scale, stream.scale, 1]}
+        >
+          <planeGeometry args={[1.7, 0.02]} />
+          <meshBasicMaterial color="#22d3ee" transparent opacity={0.18} depthWrite={false} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 export function AmbientBackground() {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const isTablet = useMediaQuery("(max-width: 1200px)");
   const reduced = useReducedMotion();
 
   const labels = [
@@ -87,6 +123,7 @@ export function AmbientBackground() {
     return (
       <div className="pointer-events-none fixed inset-0 -z-20 bg-void">
         <div className="env-gradient absolute inset-0" />
+        <div className="env-vignette absolute inset-0" />
       </div>
     );
   }
@@ -95,9 +132,12 @@ export function AmbientBackground() {
     <div className="pointer-events-none fixed inset-0 -z-20">
       <div className="env-gradient absolute inset-0" />
       <div className="env-fog absolute inset-0" />
+      <div className="env-aurora absolute inset-0" />
       <div className="env-streaks absolute inset-0 opacity-45" />
       <div className="env-scanlines absolute inset-0 opacity-20" />
+      <div className="env-noise absolute inset-0" />
       <div className="grid-floor absolute inset-0 opacity-15" />
+      <div className="env-vignette absolute inset-0" />
 
       <div className="absolute inset-0 hidden lg:block">
         {labels.map((label, i) => (
@@ -115,9 +155,14 @@ export function AmbientBackground() {
       </div>
 
       {!isMobile && (
-        <Canvas camera={{ position: [0, 0, 8], fov: 60 }} dpr={[1, 1.2]} gl={{ antialias: false, alpha: true }}>
-          <ParticleField count={140} />
+        <Canvas
+          camera={{ position: [0, 0, 8], fov: 60 }}
+          dpr={[1, isTablet ? 1.15 : 1.3]}
+          gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+        >
+          <ParticleField count={isTablet ? 120 : 180} />
           <NeuralLattice />
+          <DataStreams count={isTablet ? 14 : 22} />
         </Canvas>
       )}
     </div>

@@ -38,6 +38,12 @@ const terminalLogs = [
   "> blockchain verification enabled",
 ];
 
+const missionQueue = [
+  { id: "01", label: "Signal ingest", state: "running" },
+  { id: "02", label: "Model orchestration", state: "stable" },
+  { id: "03", label: "System response", state: "active" },
+];
+
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
@@ -63,7 +69,13 @@ export function Hero() {
   const ambientDots = isSmallLaptop ? 8 : 12;
 
   return (
-    <section ref={sectionRef} id="hero" className="section-cinematic relative flex min-h-[95vh] items-center overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="hero"
+      data-story-section
+      className="section-cinematic relative flex min-h-[95vh] items-center overflow-hidden"
+    >
+      <div className="section-seam section-seam-bottom" />
       <HeroCanvas />
       <div className="grid-floor pointer-events-none absolute inset-0 opacity-35" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(3,7,18,0.2)_0%,rgba(3,7,18,0.72)_95%)]" />
@@ -205,6 +217,31 @@ export function Hero() {
               ))}
             </div>
           </motion.div>
+
+          <motion.div
+            className="hud-scan mt-5 rounded-2xl border border-white/10 bg-void/70 p-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neon">Mission Queue</p>
+            <div className="mt-3 space-y-2.5">
+              {missionQueue.map((item, idx) => (
+                <motion.div
+                  key={item.id}
+                  className="flex items-center justify-between rounded-lg border border-white/10 bg-white/3 px-3 py-2"
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.45 + idx * 0.08 }}
+                >
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-300">
+                    {item.id} · {item.label}
+                  </p>
+                  <span className="text-[10px] uppercase tracking-[0.14em] text-neon">{item.state}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -272,6 +309,21 @@ export function Hero() {
                     <p className="text-[10px] text-slate-300">{item}</p>
                   </motion.div>
                 ))}
+              </div>
+            </div>
+
+            <div className="pointer-events-none absolute inset-x-4 top-4 z-40 rounded-xl border border-neon/25 bg-slate-950/75 px-3 py-2">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.16em] text-slate-300">
+                <span>Command Dashboard</span>
+                <span className="text-neon">Secure Channel</span>
+              </div>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <motion.div
+                  className="h-full rounded-full bg-linear-to-r from-neon via-cyan-300 to-accent"
+                  animate={{ x: ["-12%", "18%", "-12%"] }}
+                  transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ width: "42%" }}
+                />
               </div>
             </div>
 

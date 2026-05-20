@@ -13,6 +13,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
   const glowX = useTransform(x, [-0.5, 0.5], ["25%", "75%"]);
   const glowY = useTransform(y, [-0.5, 0.5], ["25%", "75%"]);
   const spotlight = useMotionTemplate`radial-gradient(circle at ${glowX} ${glowY}, ${project.accent}26, transparent 38%)`;
+  const keyMetric = project.metrics?.[0];
 
   return (
     <motion.article
@@ -57,6 +58,12 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
         <p className="mt-3 line-clamp-3 flex-1 text-sm leading-[1.7] text-slate-400 md:text-base">
           {project.description}
         </p>
+        {keyMetric && (
+          <div className="mt-4 rounded-xl border border-white/10 bg-void/55 px-3 py-2.5">
+            <p className="text-[10px] uppercase tracking-[0.16em] text-slate-400">{keyMetric.label}</p>
+            <p className="mt-0.5 font-display text-base text-white">{keyMetric.value}</p>
+          </div>
+        )}
         <div className="mt-5 flex flex-wrap gap-2">
           {project.stack.slice(0, 4).map((t) => (
             <span
@@ -87,6 +94,9 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
             </Link>
           )}
         </div>
+        <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-neon/80">
+          Narrative case study with architecture timeline
+        </p>
       </div>
 
       <div

@@ -127,6 +127,7 @@ function Ring({
 export function SkillsOrbitSystem() {
   const reduced = useReducedMotion();
   const isTablet = useMediaQuery("(max-width: 1200px)");
+  const isLaptop = useMediaQuery("(max-width: 1440px)");
   const [activeId, setActiveId] = useState(skillGroups[0]?.id ?? "ai-automation");
   const active = skillGroups.find((group) => group.id === activeId) ?? skillGroups[0];
 
@@ -138,16 +139,23 @@ export function SkillsOrbitSystem() {
         { key: "r3", radius: 325, speed: 114, groups: ["blockchain-web3", "seo-digital"] },
       ];
     }
+    if (isLaptop) {
+      return [
+        { key: "r1", radius: 190, speed: 76, groups: ["ai-automation", "full-stack"] },
+        { key: "r2", radius: 274, speed: 98, groups: ["cloud-devops", "enterprise-infra"] },
+        { key: "r3", radius: 356, speed: 120, groups: ["blockchain-web3", "seo-digital"] },
+      ];
+    }
     return [
       { key: "r1", radius: 210, speed: 78, groups: ["ai-automation", "full-stack"] },
       { key: "r2", radius: 300, speed: 100, groups: ["cloud-devops", "enterprise-infra"] },
       { key: "r3", radius: 390, speed: 124, groups: ["blockchain-web3", "seo-digital"] },
     ];
-  }, [isTablet]);
+  }, [isLaptop, isTablet]);
 
   return (
     <div className="mx-auto w-full max-w-6xl">
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-surface/55">
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-surface/55" data-story-section>
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.08),transparent_62%)]" />
 
         <div className={cn("relative mx-auto w-full", isTablet ? "h-[760px]" : "h-[920px]")}>
@@ -190,7 +198,7 @@ export function SkillsOrbitSystem() {
               config={ring}
               activeId={activeId}
               setActiveId={setActiveId}
-              cardScale={isTablet ? 0.88 : 1}
+              cardScale={isTablet ? 0.84 : isLaptop ? 0.92 : 1}
               reduced={reduced}
             />
           ))}
@@ -239,7 +247,7 @@ export function SkillsOrbitSystem() {
               </span>
               <h3 className="font-display text-2xl font-semibold text-white md:text-3xl">{active?.title}</h3>
             </div>
-            <p className="mt-3 text-sm leading-[1.7] text-slate-300 md:text-base">{active?.specialization}</p>
+            <p className="mt-3 max-w-2xl text-sm leading-[1.7] text-slate-300 md:text-base">{active?.specialization}</p>
             <div className="mt-5 flex flex-wrap gap-2">
               {active?.skills.map((skill) => (
                 <span

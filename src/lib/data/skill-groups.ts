@@ -163,17 +163,3 @@ export const orbitalHighlights = [
   },
   { name: "SEO Optimization", color: "#eab308", glow: "rgba(234,179,8,0.45)" },
 ];
-
-/** Hidden from UI, retained as non-primary metadata only */
-export const hiddenLowPrioritySkills = [
-  "Microsoft Office",
-  "Electrical Troubleshooting",
-  "Basic CSS",
-  "Basic HTML",
-  "Generic Problem Solving",
-  "Java Development",
-  "Generic SLA",
-  "Generic Troubleshooting",
-  "Minor Endorsements",
-  "Academic-only Skills",
-];

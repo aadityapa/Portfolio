@@ -3,13 +3,20 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SkillsOrbitSystem } from "@/components/sections/SkillsOrbitSystem";
 import { SkillsFallback } from "@/components/sections/SkillsFallback";
+import { TechBrandStrip } from "@/components/sections/TechBrandStrip";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export function Skills({ showHeading = true }: { showHeading?: boolean }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <section id="skills" className="section-cinematic section-pad relative overflow-hidden bg-void">
+    <section
+      id="skills"
+      data-story-section
+      className="section-cinematic section-pad relative overflow-hidden bg-void"
+    >
+      <div className="section-seam section-seam-top" />
+      <div className="section-seam section-seam-bottom" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-[480px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
       <div className="container-page relative">
         {showHeading && (
@@ -35,6 +42,7 @@ export function Skills({ showHeading = true }: { showHeading?: boolean }) {
             </span>
           ))}
         </div>
+        <TechBrandStrip />
         {isMobile ? <SkillsFallback /> : <SkillsOrbitSystem />}
       </div>
     </section>

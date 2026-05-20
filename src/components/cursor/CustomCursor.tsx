@@ -15,10 +15,12 @@ export function CustomCursor() {
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
+  const speed = useMotionValue(0);
   const trailX = useSpring(x, { stiffness: 280, damping: 28 });
   const trailY = useSpring(y, { stiffness: 280, damping: 28 });
   const ringX = useSpring(x, { stiffness: 140, damping: 20 });
   const ringY = useSpring(y, { stiffness: 140, damping: 20 });
+  const ringScale = useSpring(speed, { stiffness: 180, damping: 24 });
   const ghostX = useSpring(x, { stiffness: 90, damping: 20 });
   const ghostY = useSpring(y, { stiffness: 90, damping: 20 });
 
@@ -26,12 +28,17 @@ export function CustomCursor() {
     if (isMobile || reduced) return;
 
     const onMove = (e: MouseEvent) => {
+      const last = { x: x.get(), y: y.get() };
       x.set(e.clientX);
       y.set(e.clientY);
+      speed.set(1 + Math.min(0.35, Math.hypot(e.clientX - last.x, e.clientY - last.y) / 140));
       setVisible(true);
     };
 
-    const onLeave = () => setVisible(false);
+    const onLeave = () => {
+      setVisible(false);
+      speed.set(1);
+    };
 
     const onOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -49,7 +56,7 @@ export function CustomCursor() {
       window.removeEventListener("mouseover", onOver);
       document.body.removeEventListener("mouseleave", onLeave);
     };
-  }, [isMobile, reduced, x, y]);
+  }, [isMobile, reduced, speed, x, y]);
 
   if (isMobile || reduced) return null;
 
@@ -78,6 +85,7 @@ export function CustomCursor() {
           className="-translate-x-1/2 -translate-y-1/2 rounded-full border border-neon/60"
           style={{
             boxShadow: "0 0 30px rgba(34,211,238,0.35)",
+            scale: ringScale,
           }}
           animate={{ width: ringSize, height: ringSize }}
           transition={{ type: "spring", stiffness: 200, damping: 22 }}
@@ -93,12 +101,12 @@ export function CustomCursor() {
           transition={{ type: "spring", stiffness: 150, damping: 20 }}
         />
       </motion.div>
-      {mode === "view" && (
+      {(mode === "view" || mode === "pointer" || mode === "text") && (
         <motion.div
           className="pointer-events-none fixed top-0 left-0 z-301 -translate-x-1/2 translate-y-[-220%] rounded-full border border-neon/60 bg-void/60 px-2 py-0.5 text-[9px] font-semibold tracking-[0.16em] text-neon"
           style={{ x: trailX, y: trailY, opacity: visible ? 1 : 0 }}
         >
-          VIEW
+          {mode === "view" ? "VIEW" : mode === "text" ? "TYPE" : "OPEN"}
         </motion.div>
       )}
     </>

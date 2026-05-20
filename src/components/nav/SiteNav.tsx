@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent, useSpring } from "framer-motion";
 import { mainNav, extendedNav } from "@/lib/data/navigation";
 import { siteConfig } from "@/lib/data/portfolio";
 import { cn } from "@/lib/utils/cn";
@@ -13,17 +13,32 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastY = useRef(0);
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 160, damping: 28 });
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setHidden(y > lastY.current && y > 100);
     lastY.current = y;
   });
 
+  const [hash, setHash] = useState("");
+
   useEffect(() => setOpen(false), [pathname]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  useEffect(() => {
+    const sync = () => setHash(window.location.hash);
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/" && !hash;
+    if (href.startsWith("/#")) {
+      return pathname === "/" && hash === href.slice(1);
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <motion.header
@@ -36,6 +51,7 @@ export function SiteNav() {
       transition={{ delay: 0.2, duration: 0.7 }}
     >
       <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-neon/50 to-transparent" />
+      <motion.div className="pointer-events-none absolute inset-x-4 bottom-0 h-px origin-left bg-linear-to-r from-neon/70 via-cyan-300/70 to-transparent" style={{ scaleX: progress }} />
       <div className="flex items-center justify-between gap-3">
         <Link href="/" className="font-display text-lg font-bold text-white" data-cursor="pointer">
           AP<span className="text-neon">.</span>

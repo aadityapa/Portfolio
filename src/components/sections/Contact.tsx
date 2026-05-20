@@ -61,7 +61,12 @@ export function Contact({ showHeading = true }: { showHeading?: boolean }) {
   ];
 
   return (
-    <section id="contact" className="section-cinematic section-pad relative overflow-hidden bg-surface">
+    <section
+      id="contact"
+      data-story-section
+      className="section-cinematic section-pad relative overflow-hidden bg-surface"
+    >
+      <div className="section-seam section-seam-top" />
       <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-accent/10 blur-[100px]" />
       <div className="container-page relative">
         {showHeading && (
@@ -126,6 +131,23 @@ export function Contact({ showHeading = true }: { showHeading?: boolean }) {
               ))}
             </motion.div>
 
+            <motion.div
+              className="hud-scan rounded-2xl border border-white/10 bg-void/70 p-4"
+              variants={item}
+            >
+              <p className="text-[10px] uppercase tracking-[0.22em] text-neon">Comms Protocol</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {["Encrypted", "Low Latency", "Verified Identity", "Priority Route"].map((protocol) => (
+                  <span
+                    key={protocol}
+                    className="rounded-full border border-neon/25 bg-neon/5 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-neon/90"
+                  >
+                    {protocol}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
             <motion.ul className="flex flex-wrap gap-3" variants={item}>
               {links.map((link) => (
                 <motion.li key={link.label} whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }}>
@@ -184,6 +206,13 @@ export function Contact({ showHeading = true }: { showHeading?: boolean }) {
                   )}
                 </label>
               ))}
+            </div>
+
+            <div className="mt-6 rounded-xl border border-white/10 bg-white/3 p-3">
+              <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">Payload Preview</p>
+              <p className="mt-2 font-mono text-xs text-slate-300">
+                {`to=${siteConfig.email} · subject=Portfolio Inquiry · status=${loading ? "routing" : "ready"}`}
+              </p>
             </div>
 
             <div className="mt-8">

@@ -16,7 +16,8 @@ export function CaseStudy({ project }: { project: Project }) {
 
   return (
     <article>
-      <section className="section-cinematic relative min-h-[76vh] overflow-hidden pt-28">
+      <section className="section-cinematic relative min-h-[76vh] overflow-hidden pt-28" data-story-section>
+        <div className="section-seam section-seam-bottom" />
         <Image
           src={project.image}
           alt={project.title}
@@ -40,6 +41,16 @@ export function CaseStudy({ project }: { project: Project }) {
             </p>
           )}
           <p className="mt-6 max-w-2xl text-lg text-slate-300">{project.longDescription}</p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {(project.highlights ?? project.features.slice(0, 3)).map((highlight) => (
+              <span
+                key={highlight}
+                className="rounded-full border border-neon/25 bg-neon/5 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-neon/90"
+              >
+                {highlight}
+              </span>
+            ))}
+          </div>
           <div className="mt-8 flex flex-wrap gap-3">
             {project.demo && (
               <MagneticButton href={project.demo}>Live Demo</MagneticButton>
@@ -82,7 +93,9 @@ export function CaseStudy({ project }: { project: Project }) {
       </section>
 
       {project.metrics && (
-        <section className="section-cinematic section-pad border-y border-white/10 bg-surface/30">
+        <section className="section-cinematic section-pad border-y border-white/10 bg-surface/30" data-story-section>
+          <div className="section-seam section-seam-top" />
+          <div className="section-seam section-seam-bottom" />
           <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-3">
             {project.metrics.map((m) => (
               <motion.div
@@ -100,7 +113,7 @@ export function CaseStudy({ project }: { project: Project }) {
         </section>
       )}
 
-      <section className="section-cinematic section-pad">
+      <section className="section-cinematic section-pad" data-story-section>
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-2xl font-bold text-white">Capabilities</h2>
@@ -131,7 +144,7 @@ export function CaseStudy({ project }: { project: Project }) {
         </div>
       </section>
 
-      <section className="section-cinematic section-pad bg-void">
+      <section className="section-cinematic section-pad bg-void" data-story-section>
         <div className="mx-auto max-w-7xl">
           <h2 className="font-display text-2xl font-bold text-white">Architecture Flow</h2>
           <div

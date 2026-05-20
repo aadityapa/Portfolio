@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils/cn";
 
@@ -27,6 +27,9 @@ export function MagneticButton({
   const sy = useSpring(y, { stiffness: 360, damping: 22 });
   const rx = useTransform(sy, [-10, 10], [3, -3]);
   const ry = useTransform(sx, [-10, 10], [-3, 3]);
+  const glowX = useTransform(sx, [-18, 18], ["30%", "70%"]);
+  const glowY = useTransform(sy, [-18, 18], ["35%", "65%"]);
+  const spotlight = useMotionTemplate`radial-gradient(circle at ${glowX} ${glowY}, rgba(255,255,255,0.28), transparent 52%)`;
 
   const base = cn(
     "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-7 py-3 text-sm font-semibold transition-colors",
@@ -63,6 +66,7 @@ export function MagneticButton({
           animate={{ opacity: [0.25, 0.6, 0.25] }}
           transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
         />
+        <motion.span className="pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: spotlight }} />
         <span className="absolute inset-0 bg-linear-to-r from-neon/0 via-white/10 to-neon/0 opacity-0 transition group-hover:opacity-100" />
         {inner}
       </Link>
@@ -76,6 +80,7 @@ export function MagneticButton({
         animate={{ opacity: [0.2, 0.55, 0.2] }}
         transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
       />
+      <motion.span className="pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: spotlight }} />
       {inner}
     </motion.button>
   );
